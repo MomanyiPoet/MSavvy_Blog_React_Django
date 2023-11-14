@@ -27,33 +27,33 @@ To run the project locally, follow these steps:
 1. **Clone the repository:**
 
     ```bash
-    > git clone https://github.com/your-username/MSavvy_Blog_React_Django.git
-    > cd MSavvy_Blog_React_Django
+    git clone https://github.com/your-username/MSavvy_Blog_React_Django.git
+    cd MSavvy_Blog_React_Django
     ```
 
 2. **Setup Django Backend:**
 
     ```bash
-    > cd backend
+    cd backend
     # Create and activate a virtual environment (optional but recommended)
-    > python -m venv venv
-    > source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
     # Install dependencies
-    > pip install -r requirements.txt
+    pip install -r requirements.txt
     # Apply migrations
-    > python manage.py migrate
+    python manage.py migrate
     # Run the development server
-    > python manage.py runserver
+    python manage.py runserver
     ```
 
 3. **Setup React Frontend:**
 
     ```bash
-    > cd frontend
+    cd frontend
     # Install dependencies
-    > npm install
+    npm install
     # Start the development server
-    > npm start
+    npm start
     ```
 
 4. **Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to view the application.**

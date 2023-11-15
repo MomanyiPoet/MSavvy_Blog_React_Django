@@ -25,3 +25,16 @@ Getting Started:
     django-admin startproject djangoapp .
     python manage.py runserver
     ```
+
+4. **Setup Database, createsuperuser and makemigrations**
+    ```bash
+    # setup postgresql database
+    pip install psycopg2
+    pip install python-decouple
+    # create createsuperuser
+    python manage.py createsuperuser
+    # make migrations
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py runserver
+    ```

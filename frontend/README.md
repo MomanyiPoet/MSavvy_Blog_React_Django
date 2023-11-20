@@ -19,6 +19,7 @@ MomanyiSavvy is not just another blog; it's a virtual portal that takes you on a
     npm install -g create-react-app - install npm globally
     npx create-react-app frontend
     cd frontend
+    npm install react-router-dom
     npm start
     ```
 

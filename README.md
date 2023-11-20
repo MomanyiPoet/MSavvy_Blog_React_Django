@@ -12,13 +12,17 @@ MSavvy_Blog_React_Django is a blog site built with React for the frontend and Dj
 
 ## Technologies Used
 
-- **Frontend**:
-  - React
-  - React Router
+  - HTML, CSS, JavaScript, Bootstrap CSS framework and React for building the frontend
+  - Django (Python) and Django REST Framework for my backend
+  - PostgreSQL Database
+  - Vercel for hosting
+  - Git for Version Control System The website will have an admin interface and user interface
+  - Admin inerface allows an authenticated user to create, edit and delete blog posts
+  - The user interface allows all readers to read and make comments on selected blog posts.
+  - Blog posts will be in four categories namely: Front-end Development, AI Best Friend, UI/UX Design and Back_end Development.
+  - Each categories will have various posts
+  - Posts can be categorised into popular, most recent and highly featured posts
 
-- **Backend**:
-  - Django
-  - Django REST Framework
 
 ## Getting Started
 

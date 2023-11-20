@@ -1,7 +1,20 @@
 import cover from "../../assets/images/cover.png";
 import bg1 from "../../assets/images/bg1.webp"
 
+import React, { useState, useEffect  } from 'react';
+
 const RecentPosts = () => {
+
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        // Fetch Articles
+        fetch('http://localhost:8000/api/article/')
+            .then(response => response.json())
+            .then(data => setArticles(data))
+            .catch(error => console.error('Error fetching articles:', error));
+    }, []);
+
     return (
         <section className="py-3 pt-6" id="recents">
             <div className="container">
@@ -15,110 +28,31 @@ const RecentPosts = () => {
                 <div className="row">
                     <div className="col-xl-7 col-lg-9 col-12 mx-auto">
 
-                        <div className="card card-profile shadow-lg mt-4 mb-6">
-                            <a href="#recents" className="icon-link">
-                                <div className="row">
-                                    <div className="col-lg-4 col-md-6 col-12 mt-n5">
-                                        <div className="p-3 pe-md-0">
-                                            <img className="w-100 border-radius-md shadow-lg" src={bg1} alt="postimage" />
+                        {articles.map((article) => (
+                            <div className="card card-profile shadow-lg mt-4 mb-6" key={article.id}>
+                                <a href="#recents" className="icon-link">
+                                    <div className="row">
+                                        <div className="col-lg-4 col-md-6 col-12 mt-n5">
+                                            <div className="p-3 pe-md-0">
+                                                <img className="w-100 border-radius-md shadow-lg" src={article.image} alt="postimage" />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="col-lg-8 col-md-6 col-12 my-auto">
-                                        <div className="card-body ps-lg-0">
-                                            <h5 className="mb-0">Helpful Tips for Working from Home as a Freelancer</h5>
-                                            <p className="mb-0">
-                                                Gosh jaguar ostrich quail one excited dear hello and
-                                                bound and the and bland moral misheard roadrunner flapped
-                                                lynx far that and jeepers giggled far and far
-                                            </p>
-                                            <div className="mt-3 d-flex justify-content-between">
-                                                <h6 className="text-xs opacity-6">#css#coding</h6>
-                                                <h6 className="text-xs opacity-6"><i className="fas fa-clock text-xxs"></i> 3 mins read</h6>
+                                        <div className="col-lg-8 col-md-6 col-12 my-auto">
+                                            <div className="card-body ps-lg-0">
+                                                <h5 className="mb-0">{article.title}</h5>
+                                                <p className="mb-0">
+                                                    {article.content.length > 100 ? `${article.content.substring(0, 100)}...` : article.content}
+                                                </p>
+                                                <div className="mt-3 d-flex justify-content-between">
+                                                    <h6 className="text-xs opacity-6">{article.tags}</h6>
+                                                    <h6 className="text-xs opacity-6"><i className="fas fa-clock text-xxs"></i> {article.readingtime} mins read </h6>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div className="card card-profile shadow-lg mt-4 mb-6">
-                            <a href="#recents" className="icon-link">
-                                <div className="row">
-                                    <div className="col-lg-4 col-md-6 col-12 mt-n5">
-                                        <div className="p-3 pe-md-0">
-                                            <img className="w-100 border-radius-md shadow-lg" src={bg1} alt="postimage" />
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-8 col-md-6 col-12 my-auto">
-                                        <div className="card-body ps-lg-0">
-                                            <h5 className="mb-0">Helpful Tips for Working from Home as a Freelancer</h5>
-                                            <p className="mb-0">
-                                                Gosh jaguar ostrich quail one excited dear hello and
-                                                bound and the and bland moral misheard roadrunner flapped
-                                                lynx far that and jeepers giggled far and far
-                                            </p>
-                                            <div className="mt-3 d-flex justify-content-between">
-                                                <h6 className="text-xs opacity-6">#css#coding</h6>
-                                                <h6 className="text-xs opacity-6"><i className="fas fa-clock text-xxs"></i> 3 mins read</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div className="card card-profile shadow-lg mt-4 mb-6">
-                            <a href="#recents" className="icon-link">
-                                <div className="row">
-                                    <div className="col-lg-4 col-md-6 col-12 mt-n5">
-                                        <div className="p-3 pe-md-0">
-                                            <img className="w-100 border-radius-md shadow-lg" src={bg1} alt="postimage" />
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-8 col-md-6 col-12 my-auto">
-                                        <div className="card-body ps-lg-0">
-                                            <h5 className="mb-0">Helpful Tips for Working from Home as a Freelancer</h5>
-                                            <p className="mb-0">
-                                                Gosh jaguar ostrich quail one excited dear hello and
-                                                bound and the and bland moral misheard roadrunner flapped
-                                                lynx far that and jeepers giggled far and far
-                                            </p>
-                                            <div className="mt-3 d-flex justify-content-between">
-                                                <h6 className="text-xs opacity-6">#css#coding</h6>
-                                                <h6 className="text-xs opacity-6"><i className="fas fa-clock text-xxs"></i> 3 mins read</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div className="card card-profile shadow-lg mt-4 mb-6">
-                            <a href="#recents" className="icon-link">
-                                <div className="row">
-                                    <div className="col-lg-4 col-md-6 col-12 mt-n5">
-                                        <div className="p-3 pe-md-0">
-                                            <img className="w-100 border-radius-md shadow-lg" src={bg1} alt="postimage" />
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-8 col-md-6 col-12 my-auto">
-                                        <div className="card-body ps-lg-0">
-                                            <h5 className="mb-0">Helpful Tips for Working from Home as a Freelancer</h5>
-                                            <p className="mb-0">
-                                                Gosh jaguar ostrich quail one excited dear hello and
-                                                bound and the and bland moral misheard roadrunner flapped
-                                                lynx far that and jeepers giggled far and far
-                                            </p>
-                                            <div className="mt-3 d-flex justify-content-between">
-                                                <h6 className="text-xs opacity-6">#css#coding</h6>
-                                                <h6 className="text-xs opacity-6"><i className="fas fa-clock text-xxs"></i> 3 mins read</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
+                                </a>
+                            </div>
+                        ))}
                     </div>
 
                     <div className="col-xl-5 col-lg-8 col-12 mx-auto" >

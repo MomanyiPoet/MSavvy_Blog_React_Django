@@ -1,38 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { Link } from 'react-router-dom';
 
-import aibestfriend from "../../assets/images/aibestfriend.webp";
-import frontend from "../../assets/images/frontend.webp";
-import uiux from "../../assets/images/uiux.webp";
 import backend from "../../assets/images/backend.webp";
 
 const HotTopics = () => {
-    const [topiccards] = useState([
-        {
-            image: aibestfriend,
-            title: "AI Best Friend",
-            articles: 5,
-            id: 1
-        },
-        {
-            image: frontend,
-            title: "Front-end Development",
-            articles: 5,
-            id: 2
-        },
-        {
-            image: uiux,
-            title: "UI/UX Design",
-            articles: 5,
-            id: 3
-        },
-        {
-            image: backend,
-            title: "Back_end Development",
-            articles: 5,
-            id: 4
-        }
-    ]);
+    
+    const [categories, setCategories] = useState([]);
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        // Fetch categories
+        fetch('http://localhost:8000/api/category/')
+            .then(response => response.json())
+            .then(data => setCategories(data))
+            .catch(error => console.error('Error fetching categories:', error));
+
+        fetch('http://localhost:8000/api/article/')
+            .then(response => response.json())
+            .then(data => setArticles(data))
+            .catch(error => console.error('Error fetching articles:', error));
+    }, []);
+
+    // number of articles in each category
+    const getArticleCountByCategory = (categoryName) => {
+        return articles.filter(article => article.category === categoryName).length;
+    };
 
     return (
         <section className="py-3 pt-6" id="categories">
@@ -40,21 +32,22 @@ const HotTopics = () => {
                 <div className="row">
                     <div className="text-center">
                         <h3 className="mb-3">Hot Topics</h3>
+                        <p className="text-sm">{articles.length} Articles</p>
                     </div>
                 </div>
 
                 <div className="row">
-                    {topiccards.map((topiccard) => (
-                        <div className="col-xl-3 col-sm-6 col-12 my-2" key={topiccard.id}>
+                    {categories.map((category) => (
+                        <div className="col-xl-3 col-sm-6 col-12 my-2" key={category.id}>
                             <Link to="/categories">
                                 <div className="card card-blog card-background">
-                                    <div className="full-background" style={{ backgroundImage: `url(${topiccard.image})` }} loading="lazy">
+                                    <div className="full-background" style={{ backgroundImage: `url(${category.image})` }} loading="lazy">
                                         <span className="mask bg-gradient-dark opacity-4 border-radius-xl"></span>
                                     </div>
                                     <div className="card-body">
                                         <div className="content-bottom text-end">
-                                            <h6 className="text-white">{topiccard.title}</h6>
-                                            <p className="text-sm">{topiccard.articles} Articles</p>
+                                            <h6 className="text-white">{category.name}</h6>
+                                            <p className="text-sm">{getArticleCountByCategory(category.id)} Articles</p>
                                         </div>
                                     </div>
                                 </div>

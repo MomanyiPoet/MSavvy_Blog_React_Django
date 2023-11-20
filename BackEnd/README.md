@@ -21,7 +21,10 @@ Getting Started:
     mkdir BackEnd
     cd BackEnd
     pipenv install django
+    pip install djangorestframework
+    pip install django-cors-headers
     pipenv shell
+    python -m pip install Pillow
     django-admin startproject djangoapp .
     python manage.py runserver
     ```

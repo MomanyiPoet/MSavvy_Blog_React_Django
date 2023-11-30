@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect  } from 'react';
 import carousel1 from '../../assets/images/cover.png';
-import carousel2 from '../../assets/images/frontend.webp';
-import carousel3 from '../../assets/images/backend.webp';
 
 const CarouselSlider = () => {
+
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        // Fetch articles
+        fetch('http://localhost:8000/api/article/')
+            .then(response => response.json())
+            .then(data => setArticles(data))
+            .catch(error => console.error('Error fetching articles:', error));
+    }, []);
+
   return (
     <section id="carouselChange">
         <div className="container-fluid">
@@ -15,23 +24,19 @@ const CarouselSlider = () => {
                                 <img src={carousel1} className="d-block w-100" alt="..." />
                                 <span className="mask bg-gradient-dark opacity-8"></span>
                                 <div className="carousel-caption">
-                                    <h2 className="text-white">Lorem, ipsum dolor sit amet consectetur adipisicing.</h2>
+                                    <h2 className="text-white">MSavvy</h2>
                                 </div>
                             </div>
-                            <div className="carousel-item">
-                                <img src={carousel2} className="d-block w-100" alt="..." />
-                                <span className="mask bg-gradient-dark opacity-8"></span>
-                                <div className="carousel-caption">
-                                    <h2 className="text-white">Lorem, ipsum dolor sit amet.</h2>
+
+                            {articles.map((article) => (
+                                <div className="carousel-item" key={article.id}>
+                                    <img src={article.image} className="d-block w-100" alt="..." />
+                                    <span className="mask bg-gradient-dark opacity-8"></span>
+                                    <div className="carousel-caption">
+                                        <h2 className="text-white">{article.title}</h2>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="carousel-item">
-                                <img src={carousel3} className="d-block w-100" alt="..." />
-                                <span className="mask bg-gradient-dark opacity-8"></span>
-                                <div className="carousel-caption">
-                                    <h2 className="text-white">Lorem, ipsum dolor sit amet consectetur adipisicing.</h2>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                             data-bs-slide="prev">

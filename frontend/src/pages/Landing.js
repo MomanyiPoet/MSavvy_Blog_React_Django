@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import Header from '../layouts/landingpage/Header';
 import Navbar from '../layouts/landingpage/Navbar';
 import HotTopics from '../layouts/landingpage/HotTopics';
@@ -7,6 +8,11 @@ import ContactUs from '../layouts/landingpage/ContactUs';
 import Footer from '../components/Footer';
 
 function Landing() {
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <Navbar />

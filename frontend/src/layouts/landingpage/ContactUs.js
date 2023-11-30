@@ -1,6 +1,52 @@
 import profile2 from "../../assets/images/profile2.webp";
+import { useState } from 'react';
 
 const ContactUs = () => {
+
+    const [fullName, setFullName] = useState('');
+    const [message, setMessage] = useState('');
+    const [email, setEmail] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const fullNameValue = event.target.elements.fullName.value;
+        const messageValue = event.target.elements.message.value;
+        const emailValue = event.target.elements.email.value;
+
+        fetch('http://localhost:8000/api/contactus/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                fullname: fullNameValue,
+                email: emailValue,
+                message: messageValue,
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.id) {
+                    // Assuming the presence of an 'id' property indicates a successful submission
+                    setSuccessMessage('Message submitted successfully');
+                    setFullName('');
+                    setEmail('');
+                    setMessage('');
+                } else {
+                    // Handle error, e.g., show an error message
+                    setSuccessMessage('Failed to submit message');
+                }
+            })
+            .catch(error => {
+                console.error('Error submitting comment:', error);
+                setSuccessMessage('An error occurred while submitting the comment');
+                setFullName('');
+                setEmail('');
+                setMessage('');
+            });
+    };
+
     return (
         <section className="py-3 pt-6" id="contact">
             <div className="container">
@@ -21,22 +67,23 @@ const ContactUs = () => {
                                 </div>
                             </div>
                             <div className="card-body">
+                                {successMessage && <div className="alert alert-success text-white fw-bold">{successMessage}</div>}
                                 <p className="pb-3">
                                     For further questions, including partnership opportunities, please use our contact form.
                                 </p>
-                                <form id="contact-form" method="post" autocomplete="off">
+                                <form id="contact-form" onSubmit={handleSubmit} autocomplete="off">
                                     <div className="card-body p-0 my-3">
                                         <div className="row">
                                             <div className="col-md-6">
                                                 <div className="input-group input-group-static mb-4">
                                                     <label>Full Name</label>
-                                                    <input type="email" className="form-control" placeholder="I am ..."/>
+                                                    <input type="text" name="fullName" className="form-control" placeholder="I am ..." value={fullName} onChange={(e) => setFullName(e.target.value)}/>
                                                 </div>
                                             </div>
                                             <div className="col-md-6 ps-md-2">
                                                 <div className="input-group input-group-static mb-4">
                                                     <label>Email</label>
-                                                    <input type="email" className="form-control" placeholder="hello@email.com"/>
+                                                    <input type="email" name="email" className="form-control" placeholder="hello@email.com" value={email} onChange={(e) => setEmail(e.target.value)}/>
                                                 </div>
                                             </div>
                                         </div>
@@ -44,7 +91,7 @@ const ContactUs = () => {
                                             <div className="input-group input-group-static mb-4">
                                                 <label>Message</label>
                                                 <textarea name="message" className="form-control" id="message" rows="6"
-                                                    placeholder="I would like to ..."></textarea>
+                                                    placeholder="I would like to ..." value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                                             </div>
                                         </div>
                                         <div className="row">

@@ -8,7 +8,7 @@ const Navbar = () => {
             <div className="col-12">
                 <nav className="navbar navbar-expand-lg navbar-transluscent blur border-radius-xl top-0 z-index-fixed shadow position-absolute py-2 start-0 end-0 mx-4">
                     <div className="container-fluid px-0">
-                        <a href="#header" className="navbar-brand fw-bolder text-lg">
+                        <a href="#" className="navbar-brand fw-bolder text-lg">
                             <img src={logo} alt="logo" width="40" height="" />
                         </a>
                         <button className="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -28,8 +28,8 @@ const Navbar = () => {
                                         aria-expanded="false">Home</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a href="#categoryposts" className="nav-link ps-2 d-flex cursor-pointer"
-                                        aria-expanded="false">Categories</a>
+                                    <a href="#posts" className="nav-link ps-2 d-flex cursor-pointer"
+                                        aria-expanded="false">Recent Posts</a>
                                 </li>
                                 <li className="nav-item nav-link">
                                     <a href="#header" className="btn btn-sm bg-gradient-info mb-0 me-1 mt-md-0 mt-2"

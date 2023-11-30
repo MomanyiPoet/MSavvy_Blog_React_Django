@@ -1,19 +1,26 @@
-import cover from "../../assets/images/cover.png";
-import bg1 from "../../assets/images/bg1.webp"
+import PopularPosts from "../postpage/PopularPosts";
+import LatestComments from "../postpage/LatestComments";
 
 import React, { useState, useEffect  } from 'react';
+import { Link } from 'react-router-dom';
 
 const RecentPosts = () => {
 
     const [articles, setArticles] = useState([]);
+    const [displayCount, setDisplayCount] = useState(6); // Initial number of articles to display
 
     useEffect(() => {
         // Fetch Articles
-        fetch('http://localhost:8000/api/article/')
+        fetch('http://localhost:8000/api/article/normal_list/')
             .then(response => response.json())
             .then(data => setArticles(data))
             .catch(error => console.error('Error fetching articles:', error));
     }, []);
+
+    const handleLoadMore = () => {
+        // Increase the display count to load more comments
+        setDisplayCount(displayCount + 5);
+    };
 
     return (
         <section className="py-3 pt-6" id="recents">
@@ -28,9 +35,9 @@ const RecentPosts = () => {
                 <div className="row">
                     <div className="col-xl-7 col-lg-9 col-12 mx-auto">
 
-                        {articles.map((article) => (
+                        {articles.slice(0, displayCount).map((article) => (
                             <div className="card card-profile shadow-lg mt-4 mb-6" key={article.id}>
-                                <a href="#recents" className="icon-link">
+                                <Link to={`/article/${article.id}`}>
                                     <div className="row">
                                         <div className="col-lg-4 col-md-6 col-12 mt-n5">
                                             <div className="p-3 pe-md-0">
@@ -50,118 +57,20 @@ const RecentPosts = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </Link>
                             </div>
                         ))}
+                        {displayCount < articles.length && (
+                            <div className="text-center">
+                                <button onClick={handleLoadMore} className='btn btn-sm bg-gradient-white text-dark mb-0 me-1 shadow mt-md-0 mt-2'>Load More Articles</button>
+                            </div>
+                        )}
                     </div>
 
                     <div className="col-xl-5 col-lg-8 col-12 mx-auto" >
-                        <div className="card card-plain shadow-lg mt-4 p-4">
-                            <div className="row">
-                                <div className="fw-bold">
-                                    <h4>Popular Posts</h4>
-                                    <hr className="border border-dark border-1 opacity-2" />
-                                </div>
-                            </div>
+                        < PopularPosts />
 
-                            <a href="#recents">
-                                <div className="row py-2">
-                                    <div className="col-sm-2 col-4">
-                                        <img className="avatar avatar-xl shadow-xl position-relative z-index-2" src={cover} alt="dp" loading="lazy" />
-                                    </div>
-                                    <div className="col-sm-10 col-8 d-flex flex-column align-items-start justify-content-center">
-                                        <h6 className="px-xl-2">Creating is a privilege but it’s also a gift</h6>
-                                        <h6 className="px-xl-2 text-xs opacity-6 text-end">5 Sep 2023 <i className="fas fa-clock text-xxs"></i> 3 mins read</h6>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr className="border border-dark border-1 opacity-1"></hr>
-
-                            <a href="#recents">
-                                <div className="row py-2">
-                                    <div className="col-sm-2 col-4">
-                                        <img className="avatar avatar-xl shadow-xl position-relative z-index-2" src={cover} alt="dp" loading="lazy"/>
-                                    </div>
-                                    <div className="col-sm-10 col-8 d-flex flex-column align-items-start justify-content-center">
-                                        <h6 className="px-xl-2">Creating is a privilege but it’s also a gift</h6>
-                                        <h6 className="px-xl-2 text-xs opacity-6 text-end">5 Sep 2023 <i className="fas fa-clock text-xxs"></i> 3 mins read</h6>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr className="border border-dark border-1 opacity-1" />
-
-                            <a href="#recents">
-                                <div className="row py-2">
-                                    <div className="col-sm-2 col-4">
-                                        <img className="avatar avatar-xl shadow-xl position-relative z-index-2" src={cover} alt="dp" loading="lazy" />
-                                    </div>
-                                    <div className="col-sm-10 col-8 d-flex flex-column align-items-start justify-content-center">
-                                        <h6 className="px-xl-2">Creating is a privilege but it’s also a gift</h6>
-                                        <h6 className="px-xl-2 text-xs opacity-6 text-end">5 Sep 2023 <i className="fas fa-clock text-xxs"></i> 3 mins read</h6>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr className="border border-dark border-1 opacity-1"></hr>
-
-                        </div>
-
-                        <div className="card card-plain shadow-lg mt-4 p-4">
-                            <div className="row">
-                                <div className="fw-bold">
-                                    <h4>Latest Comments</h4>
-                                    <hr className="border border-dark border-1 opacity-2" />
-                                </div>
-                            </div>
-
-                            <div className="row py-2">
-                                <div className="col">
-                                    <p>" Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, obcaecati? "</p>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-2 col-4">
-                                        <img className="avatar avatar-lg shadow-xl position-relative z-index-2" src={cover} alt="dp" loading="lazy"/>
-                                    </div>
-                                    <div className="col-sm-10 col-8 d-flex flex-column align-items-start justify-content-center">
-                                        <h6 className="px-xl-2">John Doe</h6>
-                                        <h6 className="px-xl-2 text-xs opacity-6 text-end">5 Sep 2023</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr className="border border-dark border-1 opacity-1" />
-
-                            <div className="row py-2">
-                                <div className="col">
-                                    <p>" Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, obcaecati? "</p>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-2 col-4">
-                                        <img className="avatar avatar-lg shadow-xl position-relative z-index-2" src={cover} alt="dp" loading="lazy"/>
-                                    </div>
-                                    <div className="col-sm-10 col-8 d-flex flex-column align-items-start justify-content-center">
-                                        <h6 className="px-xl-2">John Doe</h6>
-                                        <h6 className="px-xl-2 text-xs opacity-6 text-end">5 Sep 2023</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr className="border border-dark border-1 opacity-1" />
-
-                            <div className="row py-2">
-                                <div className="col">
-                                    <p>" Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, obcaecati? "</p>
-                                </div>
-                                <div className="row">
-                                    <div className="col-sm-2 col-4">
-                                        <img className="avatar avatar-lg shadow-xl position-relative z-index-2" src={cover} alt="dp" loading="lazy"/>
-                                    </div>
-                                    <div className="col-sm-10 col-8 d-flex flex-column align-items-start justify-content-center">
-                                        <h6 className="px-xl-2">John Doe</h6>
-                                        <h6 className="px-xl-2 text-xs opacity-6 text-end">5 Sep 2023</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr className="border border-dark border-1 opacity-1" />
-
-                        </div>
+                        < LatestComments />
                     </div>
                 </div>
             </div>

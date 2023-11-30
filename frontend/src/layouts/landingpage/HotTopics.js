@@ -1,8 +1,6 @@
 import React, { useState, useEffect  } from 'react';
 import { Link } from 'react-router-dom';
 
-import backend from "../../assets/images/backend.webp";
-
 const HotTopics = () => {
     
     const [categories, setCategories] = useState([]);
@@ -15,6 +13,7 @@ const HotTopics = () => {
             .then(data => setCategories(data))
             .catch(error => console.error('Error fetching categories:', error));
 
+        // Fetch articles
         fetch('http://localhost:8000/api/article/')
             .then(response => response.json())
             .then(data => setArticles(data))
@@ -39,7 +38,7 @@ const HotTopics = () => {
                 <div className="row">
                     {categories.map((category) => (
                         <div className="col-xl-3 col-sm-6 col-12 my-2" key={category.id}>
-                            <Link to="/categories">
+                            <Link to={`/category/${category.id}`}>
                                 <div className="card card-blog card-background">
                                     <div className="full-background" style={{ backgroundImage: `url(${category.image})` }} loading="lazy">
                                         <span className="mask bg-gradient-dark opacity-4 border-radius-xl"></span>

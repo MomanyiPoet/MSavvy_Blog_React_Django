@@ -1,6 +1,4 @@
 import bgImage from '../../assets/images/bg1.webp';
-import shapeone from '../../assets/images/pattern-2.svg';
-import shapetwo from '../../assets/images/pattern-3.svg';
 
 const Header = () => {
     return (
@@ -26,8 +24,6 @@ const Header = () => {
                         </div>
                     </div>
                 </div>
-                <img src={shapeone} width="27" height="26" alt="shape" className="shape shape-1" />
-                <img src={shapetwo} width="27" height="26" alt="shape" className="shape shape-2" />
 
             </div>
         </header>

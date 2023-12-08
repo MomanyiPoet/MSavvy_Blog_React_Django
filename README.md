@@ -14,57 +14,15 @@ MSavvy_Blog_React_Django is a blog site built with React for the frontend and Dj
 
   - HTML, CSS, JavaScript, Bootstrap CSS framework and React for building the frontend
   - Django (Python) and Django REST Framework for my backend
-  - PostgreSQL Database
+  - PostgreSQL Database from Railway
   - Vercel for hosting
   - Git for Version Control System The website will have an admin interface and user interface
   - Admin inerface allows an authenticated user to create, edit and delete blog posts
   - The user interface allows all readers to read and make comments on selected blog posts.
-  - Blog posts will be in four categories namely: Front-end Development, AI Best Friend, UI/UX Design and Back_end Development.
+  - Blog posts will be in four categories namely: Front end Development, AI, Networking and Back end Development.
   - Each categories will have various posts
   - Posts can be categorised into popular, most recent and highly featured posts
 
-
-## Getting Started
-
-To run the project locally, follow these steps:
-
-1. **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/your-username/MSavvy_Blog_React_Django.git
-    cd MSavvy_Blog_React_Django
-    ```
-
-2. **Setup Django Backend:**
-
-    ```bash
-    cd backend
-    # Create and activate a virtual environment (optional but recommended)
-    python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-    # Install dependencies
-    pip install -r requirements.txt
-    # Apply migrations
-    python manage.py migrate
-    # Run the development server
-    python manage.py runserver
-    ```
-
-3. **Setup React Frontend:**
-
-    ```bash
-    cd frontend
-    # Install dependencies
-    npm install
-    # Start the development server
-    npm start
-    ```
-
-4. **Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to view the application.**
-
-## Contributing
-
-If you'd like to contribute to this project, please reach out.
 
 ## License
 
@@ -77,5 +35,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-For inquiries, please contact [momanyiturner@gmail.com].
+For inquiries, please contact [momanyiturner@gmail.com] or [https://github.com/MomanyiPoet].
 
